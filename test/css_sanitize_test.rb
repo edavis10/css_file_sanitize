@@ -61,7 +61,7 @@ STR
     ]
     bad_strings.each do |string|
       @site.custom_css = string
-      @site.custom_css.should == "Error: invalid/disallowed characters in CSS"
+      @site.custom_css.should == nil
     end
   end
   
@@ -99,9 +99,9 @@ STR
     a.bar { x: poo }
 STR
     @site.custom_css = text
-    @site.custom_css.should == "Error: invalid/disallowed characters in CSS"
+    @site.custom_css.should == nil
     @site.custom_css = "Foo /*/**/ Bar"
-    @site.custom_css.should == "Error: invalid/disallowed characters in CSS"
+    @site.custom_css.should == nil
   end
 
   it "doesn't allow bad css" do
@@ -109,7 +109,7 @@ STR
 test{ width: expression(alert("sux 2 be u")); }
 a:link { color: red }
 STR
-    @site.custom_css.should == "Error: invalid/disallowed characters in CSS"
+    @site.custom_css.should == nil
   end
 
 end

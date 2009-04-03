@@ -19,8 +19,8 @@ module CssSanitize
       /[\x00-\x08\x0B\x0C\x0E-\x1F]/, #low bytes -- suspect
       /&\#/, # bad charset
     ]
-    evil.each { |regex| text = "Error: invalid/disallowed characters in CSS" and break if no_comments =~ regex }
+    evil.each { |regex| text = "" and break if no_comments =~ regex }
 
-    write_attribute :custom_css, text
+    write_attribute :custom_css, text unless text.empty?
   end
 end
