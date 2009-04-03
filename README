@@ -1,0 +1,7 @@
+This plugin will sanitize input CSS for an ActiveRecord model.  It defaults to using the +custom_css+ attribute.
+
+1. Include the +CssSantize+ module in your ActiveRecord model.
+2. Use +YourModel.custom_css=+ to set the css.
+3. No step three.
+
+Optionally, you can just use the sanitizer directly by calling the +sanitize_css+ method.
