@@ -2,6 +2,10 @@
 module CssSanitize
 
   def custom_css=(text)
+    write_attribute :custom_css, sanitize_css(text) unless text.blank?
+  end
+
+  def sanitize_css(text)
     # Mostly stolen from http://code.sixapart.com/svn/CSS-Cleaner/trunk/lib/CSS/Cleaner.pm
     text = "Error: invalid/disallowed characters in CSS" if text =~ /(\w\/\/)/    # a// comment immediately following a letter
     text = "Error: invalid/disallowed characters in CSS" if text =~ /(\w\/\/*\*)/ # a/* comment immediately following a letter
@@ -19,8 +23,8 @@ module CssSanitize
       /[\x00-\x08\x0B\x0C\x0E-\x1F]/, #low bytes -- suspect
       /&\#/, # bad charset
     ]
-    evil.each { |regex| text = "" and break if no_comments =~ regex }
+    evil.each { |regex| text = nil and break if no_comments =~ regex }
 
-    write_attribute :custom_css, text unless text.empty?
+    text
   end
 end
