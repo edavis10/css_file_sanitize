@@ -2,7 +2,7 @@
 module CssSanitize
 
   def custom_css=(text)
-    write_attribute :custom_css, sanitize_css(text) unless text.blank?
+    write_attribute :custom_css, sanitize_css(text)
   end
 
   def sanitize_css(text)
