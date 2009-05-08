@@ -13,6 +13,7 @@ module CssSanitize
 
     # Now, strip out any comments, and do some parsing.
     no_comments = text.gsub(/(\/\*.*?\*\/)/, "") # filter out any /* ... */
+    no_comments.gsub!("\r\n", "")
     no_comments.gsub!("\n", "")
     # No backslashes allowed
     evil = [
