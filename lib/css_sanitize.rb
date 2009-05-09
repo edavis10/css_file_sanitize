@@ -18,8 +18,8 @@ module CssSanitize
     # No backslashes allowed
     evil = [
       /(\bdata:\b|eval|cookie|\bwindow\b|\bparent\b|\bthis\b)/i, # suspicious javascript-type words
-      /behaviou?r|expression|moz-binding|@charset|(java|vb)?script|[\<]|\\\w/i,
-      /[\<>]/, # back slash, html tags,
+      /behaviou?r|expression|moz-binding|@charset|(java|vb)+script|[\<]|\\\w/i,
+      /(\<.+>)/, # back slash, html tags,
       /[\x7f-\xff]/, # high bytes -- suspect
       /[\x00-\x08\x0B\x0C\x0E-\x1F]/, #low bytes -- suspect
       /&\#/, # bad charset
